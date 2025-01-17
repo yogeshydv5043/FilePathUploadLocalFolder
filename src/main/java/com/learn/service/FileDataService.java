@@ -10,6 +10,8 @@ public interface FileDataService {
 
     FileDataDto create(FileDataDto fileDataDto);
 
+    FileDataDto getById(String Id);
+
     List<FileDataDto> getAll();
 
     FileDataDto setBanner(MultipartFile multipartFile, String Id) throws IOException;

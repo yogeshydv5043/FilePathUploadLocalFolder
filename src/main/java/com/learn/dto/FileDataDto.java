@@ -31,15 +31,12 @@ public class FileDataDto {
     }
 
     public String getBanner() {
-        return "http://localhost:8081/file/v1/uploads/banner/"+banner;
+        return banner;
     }
 
     public void setBanner(String banner) {
         this.banner = banner;
     }
-
-
-
 
     public FileDataDto() {
     }

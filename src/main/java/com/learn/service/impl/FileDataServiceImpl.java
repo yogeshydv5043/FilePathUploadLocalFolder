@@ -34,6 +34,12 @@ public class FileDataServiceImpl implements FileDataService {
     }
 
     @Override
+    public FileDataDto getById(String Id) {
+        FileData fileData = fileDataRepository.findById(Id).orElseThrow(() -> new RuntimeException("File not found !!"));
+        return modelMapper.map(fileData, FileDataDto.class);
+    }
+
+    @Override
     public List<FileDataDto> getAll() {
         List<FileData> list = fileDataRepository.findAll();
         return list.stream().map(file -> modelMapper.map(file, FileDataDto.class)).toList();
@@ -42,7 +48,7 @@ public class FileDataServiceImpl implements FileDataService {
     @Override
     public FileDataDto setBanner(MultipartFile multipartFile, String Id) throws IOException {
         FileData response = fileDataRepository.findById(Id).orElseThrow(() -> new RuntimeException("Id not found !!"));
-        String banner=filePathService.fileUpload(multipartFile);
+        String banner = filePathService.fileUpload(multipartFile);
         response.setBanner(banner);
         FileData fileData = fileDataRepository.save(response);
         return modelMapper.map(fileData, FileDataDto.class);
